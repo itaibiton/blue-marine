@@ -65,8 +65,8 @@ export const FeaturesSection = () => {
   }, []);
 
   return (
-    <Page ref={sectionRef} className="gap-[64px] items-start">
-      <div className="flex gap-[30px] h-[289px] items-start w-full">
+    <Page ref={sectionRef} className="gap-[32px] md:gap-[64px] items-start">
+      <div className="flex flex-col md:flex-row gap-[20px] md:gap-[30px] md:h-[289px] items-start w-full">
         <FeatureCard
           ref={el => cardsRef.current[0] = el}
           emoji="📍"
@@ -86,7 +86,7 @@ export const FeaturesSection = () => {
           description="הסלון המרווח כולל ריהוט יוקרתי ונוח, מערכת שמע, פינות ישיבה אלגנטיות ואבזור מודרני להשלמת חוויית האירוח."
         />
       </div>
-      <div className="flex gap-[30px] h-[390px] items-start w-full">
+      <div className="flex flex-col md:flex-row gap-[20px] md:gap-[30px] md:h-[390px] items-start w-full">
         <FeatureCard
           ref={el => cardsRef.current[3] = el}
           emoji="🥐"

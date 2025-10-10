@@ -60,8 +60,8 @@ export const ContactSection = () => {
   }, []);
 
   return (
-    <Page ref={sectionRef} className="gap-[32px] items-end pb-[8px]">
-      <div ref={mapRef} className="h-[398px] relative rounded-[20px] w-full overflow-hidden">
+    <Page ref={sectionRef} className="gap-[16px] md:gap-[32px] items-end pb-[8px]">
+      <div ref={mapRef} className="h-[250px] md:h-[350px] lg:h-[398px] relative rounded-[20px] w-full overflow-hidden">
         <Image
           src="/map.jpg"
           alt="Location Map"
@@ -70,11 +70,11 @@ export const ContactSection = () => {
         />
       </div>
       <div ref={infoRef} className="flex flex-col gap-[8px] items-end justify-end w-full">
-        <div className="flex flex-col font-medium gap-[8px] items-start leading-[0] text-[20px] text-[var(--color-primary)] text-right">
-          <p className="leading-[32px]" dir="auto">
+        <div className="flex flex-col font-medium gap-[8px] items-start leading-[0] text-[16px] md:text-[20px] text-[var(--color-primary)] text-right">
+          <p className="leading-[24px] md:leading-[32px]" dir="auto">
             📞  050 - 358 - 6949
           </p>
-          <p className="leading-[32px]" dir="auto">
+          <p className="leading-[24px] md:leading-[32px]" dir="auto">
             📍 אקסודוס 30, אשדוד, ישראל
           </p>
         </div>

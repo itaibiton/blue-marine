@@ -130,7 +130,8 @@ export const GallerySection = () => {
 
   return (
     <div ref={containerRef} className="flex flex-col gap-[32px] items-center justify-center w-full">
-      <div className="flex gap-4 w-full h-[400px]">
+      {/* Desktop Gallery */}
+      <div className="hidden md:flex gap-4 w-full h-[400px]">
         {galleryImages.map((item, idx) => (
           <div
             key={idx}
@@ -149,6 +150,27 @@ export const GallerySection = () => {
           </div>
         ))}
       </div>
+
+      {/* Mobile Gallery - Horizontal Scroll */}
+      <div className="md:hidden w-full overflow-x-auto overflow-y-hidden">
+        <div className="flex gap-4 snap-x snap-mandatory pb-2">
+          {galleryImages.map((item, idx) => (
+            <div
+              key={idx}
+              className="relative rounded-[24px] overflow-hidden flex-shrink-0 w-[280px] h-[350px] snap-center"
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                className="object-cover"
+                sizes="280px"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div ref={buttonRef}>
         <Button variant="default">לגלריה</Button>
       </div>

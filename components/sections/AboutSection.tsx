@@ -84,16 +84,16 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <Page ref={sectionRef} className="gap-[4rem] items-center text-center">
-      <div>
-        <p ref={heading1Ref} className="leading-[64px] text-[40px] text-[var(--color-primary-light)] w-[834px]" dir="auto">
+    <Page ref={sectionRef} className="gap-[2rem] md:gap-[4rem] items-center text-center">
+      <div className="w-full max-w-full md:max-w-[868px]">
+        <p ref={heading1Ref} className="leading-[32px] md:leading-[48px] lg:leading-[64px] text-[24px] md:text-[32px] lg:text-[40px] text-[var(--color-primary-light)] w-full" dir="auto">
           פנטהאוז משגע בקו ראשון אל מול נוף תכול אינסופי, מרינה וספינות...
         </p>
-        <p ref={heading2Ref} className="leading-[40px] text-[24px] text-[var(--color-primary-light)] w-[868px]" dir="auto">
+        <p ref={heading2Ref} className="leading-[24px] md:leading-[32px] lg:leading-[40px] text-[16px] md:text-[20px] lg:text-[24px] text-[var(--color-primary-light)] w-full mt-4" dir="auto">
           מחכה לך הסוויטה המלכותית כיאה למלכה כמוך ביום כלולותיה - סלון מרווח ומואר, פינות ישיבה, כורסת כלה ואקססוריז עם ריחות קסומים ואווירה מרגיעה, מרפסת ענקית ופתוחה אל הים הגדול וארוחת בוקר עשירה ומפנקת שיעניקו לך כל מה שכלה צריכה ליום התארגנות מהנה ובלתי נשכח, להיראות במיטבך בצילומים וביום חופתך
         </p>
       </div>
-      <div ref={galleryRef}>
+      <div ref={galleryRef} className="w-full">
         <GallerySection />
       </div>
     </Page>

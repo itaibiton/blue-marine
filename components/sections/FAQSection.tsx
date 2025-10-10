@@ -11,19 +11,19 @@ const FAQItem = forwardRef<HTMLDivElement, { question: string; answer?: string; 
   ({ question, answer, isOpen, onClick }, ref) => {
     return (
       <div ref={ref} className="border-[var(--color-primary-light)] border-b border-l-0 border-r-0 border-solid border-t-0 flex flex-col items-start pb-[16px] w-full">
-        <button onClick={onClick} className="flex gap-[32px] items-center justify-between w-full hover:opacity-80 transition-opacity">
-          <div className="flex flex-col font-medium leading-[0] text-[20px] text-[var(--color-primary)] text-center whitespace-nowrap">
-            <p className="leading-[32px]" dir="auto">
+        <button onClick={onClick} className="flex gap-[16px] md:gap-[32px] items-center justify-between w-full hover:opacity-80 transition-opacity">
+          <div className="flex flex-col font-medium leading-[0] text-[16px] md:text-[20px] text-[var(--color-primary)] text-right flex-1">
+            <p className="leading-[24px] md:leading-[32px] whitespace-normal" dir="auto">
               {question}
             </p>
           </div>
-          <div className="relative shrink-0 size-[32px]">
-            <span className="text-[var(--color-primary)] text-[24px]">{isOpen ? '−' : '+'}</span>
+          <div className="relative shrink-0 size-[24px] md:size-[32px]">
+            <span className="text-[var(--color-primary)] text-[20px] md:text-[24px]">{isOpen ? '−' : '+'}</span>
           </div>
         </button>
         {isOpen && answer && (
-          <div className="flex flex-col font-normal leading-[0] text-[20px] text-[var(--color-primary)] text-center whitespace-nowrap mt-2">
-            <p className="leading-[32px]" dir="auto">
+          <div className="flex flex-col font-normal leading-[0] text-[16px] md:text-[20px] text-[var(--color-primary)] text-right mt-2">
+            <p className="leading-[24px] md:leading-[32px] whitespace-normal" dir="auto">
               {answer}
             </p>
           </div>
