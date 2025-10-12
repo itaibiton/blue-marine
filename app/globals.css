@@ -87,6 +87,7 @@
 
 body {
   font-family: 'Noto Sans Hebrew', Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 * {

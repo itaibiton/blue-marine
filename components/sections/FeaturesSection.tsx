@@ -19,10 +19,8 @@ const FeatureCard = forwardRef<HTMLDivElement, {
       <div
         ref={ref}
         className={cn(
-          `group relative flex flex-col gap-3 md:gap-4 items-center justify-center p-4 md:p-6 overflow-hidden rounded-3xl transition-all duration-500 hover:scale-[1.03] hover:rotate-1 cursor-pointer`,
-          `before:absolute before:inset-0 before:bg-gradient-to-br before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100`,
-          bgColor || 'bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40',
-          gradient,
+          `relative flex flex-col gap-3 md:gap-4 items-center justify-center p-4 md:p-6 overflow-hidden rounded-3xl max-w-full`,
+          bgColor || 'bg-white/10 backdrop-blur-sm border border-white/20',
           className
         )}
         style={{
@@ -30,33 +28,23 @@ const FeatureCard = forwardRef<HTMLDivElement, {
           animation: 'fadeInUp 0.8s ease-out forwards'
         }}
       >
-        {/* Floating particles effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-2 left-2 w-1 h-1 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '0s' }}></div>
-          <div className="absolute top-4 right-3 w-1 h-1 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute bottom-3 left-4 w-1 h-1 bg-white/25 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
-
-        <div className="relative z-10 transform transition-transform duration-300 group-hover:scale-110 float-animation">
-          <p className="font-medium text-3xl md:text-4xl lg:text-5xl text-center filter drop-shadow-lg">
+        <div className="relative z-10">
+          <p className="font-medium text-3xl md:text-4xl lg:text-5xl text-center">
             {emoji}
           </p>
         </div>
 
-        <div className="relative z-10 flex flex-col gap-2 md:gap-3 items-center text-center w-full">
+        <div className="relative z-10 flex flex-col gap-2 md:gap-3 items-center text-center w-full max-w-full">
           <h3 className={cn(
-            "font-bold text-lg md:text-xl lg:text-2xl leading-tight bg-gradient-to-r from-white to-white/80 bg-clip-text",
+            "font-bold text-lg md:text-xl lg:text-2xl leading-tight",
             titleColor || 'text-primary'
           )} dir="auto">
             {title}
           </h3>
-          <p className="text-sm md:text-base lg:text-lg leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity duration-300" dir="auto">
+          <p className="text-sm md:text-base lg:text-lg leading-relaxed opacity-90" dir="auto">
             {description}
           </p>
         </div>
-
-        {/* Shine effect */}
-        <div className="absolute inset-0 -top-2 -left-2 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
       </div>
     );
   }
@@ -138,17 +126,10 @@ export const FeaturesSection = () => {
   }, []);
 
   return (
-    <Page ref={sectionRef} className="gap-8 md:gap-12 relative">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[var(--color-primary)]/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-[var(--color-secondary)]/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-[var(--color-secondary-light)]/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      <div className="relative z-10 max-h-[80vh]">
+    <Page ref={sectionRef} className="gap-8 md:gap-12 relative ">
+      <div className="relative z-10 w-full">
         {/* Dynamic bento grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 auto-rows-fr max-w-full">
           {/* First row - Location card spans 2 columns */}
           <FeatureCard
             ref={el => {
@@ -196,7 +177,7 @@ export const FeaturesSection = () => {
             emoji="🥐"
             title="ארוחת בוקר לבחירה"
             description="במהלך השהות בפנטהאוז, כלה והמלוות נהנות מאפשרות להזמין ארוחת בוקר עשירה בהתאמה אישית. ניתן לבחור מתוך מגוון תפריטים – ארוחה חלבית קלאסית עם הגבינות, לחמים, סלטים טריים, מאפים ושתייה חמה/קרה, או אלטרנטיבות טבעוניות/בריאות לפי העדפה."
-            bgColor="bg-[rgba(47,75,83,0.95)] text-[var(--color-secondary)] shadow-2xl"
+            bgColor="bg-[rgba(47,75,83,0.95)] text-[var(--color-secondary)] "
             className="col-span-1 md:col-span-3"
             titleColor="text-[var(--color-secondary)]"
             delay={300}
@@ -210,7 +191,7 @@ export const FeaturesSection = () => {
             emoji="🎈"
             title="סידור בלונים ייחודי"
             description="עיצוב חלל הפנטהאוז עם סידור בלונים בהתאמה אישית לצרכים ולסגנון הכלה. ניתן לבחור בין מגוון עיצובים וקומבינציות צבעים, החל מסידורי בלונים קלאסיים בגווני לבן וזהב ועד לעיצובים טרנדיים, קשתות בלונים, בלוני הליום ענקיים ואפילו עיצוב אישי עם שמות, כיתובים או תוספות מפתיעות."
-            bgColor="bg-[var(--color-secondary-light)] text-[var(--color-primary)] shadow-2xl"
+            bgColor="bg-[var(--color-secondary-light)] text-[var(--color-primary)] "
             className="col-span-1 md:col-span-3"
             titleColor="text-[var(--color-primary)]"
             delay={400}

@@ -28,12 +28,12 @@ export const ContactFAQSection = () => {
 
     if (!section || !faq || !map || !contactInfo) return;
 
-    // FAQ animation - slide from left
+    // FAQ animation - fade in only
     gsap.fromTo(faq,
-      { opacity: 0, x: -50 },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
-        x: 0,
+        y: 0,
         duration: 0.8,
         ease: 'power3.out',
         scrollTrigger: {
@@ -44,12 +44,12 @@ export const ContactFAQSection = () => {
       }
     );
 
-    // Map animation - fade and scale
+    // Map animation - fade in only
     gsap.fromTo(map,
-      { opacity: 0, scale: 0.95 },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
-        scale: 1,
+        y: 0,
         duration: 0.8,
         delay: 0.2,
         ease: 'power3.out',
@@ -61,9 +61,9 @@ export const ContactFAQSection = () => {
       }
     );
 
-    // Contact info animation - slide from right
+    // Contact info animation - fade in
     gsap.fromTo(contactInfo,
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
@@ -109,20 +109,20 @@ export const ContactFAQSection = () => {
   return (
     <Page ref={sectionRef} className="gap-8 md:gap-12 relative">
       {/* Section Title */}
-      <div className="relative z-10 text-center mb-4">
+      {/* <div className="relative z-10 text-center mb-4">
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--color-primary)] mb-2" dir="auto">
           שאלות נפוצות ויצירת קשר
         </h2>
         <p className=" md:text-lg text-[var(--color-primary-light)]" dir="auto">
           כל המידע שאת צריכה במקום אחד
         </p>
-      </div>
+      </div> */}
 
       {/* FAQ and Map - Side by Side */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full items-start">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full max-w-full items-start">
         {/* FAQ Section */}
-        <div ref={faqRef}>
-          <div className="rounded-3xl p-6 md:p-8">
+        <div ref={faqRef} className="max-w-full">
+          <div className="rounded-3xl p-6 md:p-8 max-w-full">
             <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
               {faqItems.map((item, idx) => (
                 <AccordionItem
@@ -145,13 +145,13 @@ export const ContactFAQSection = () => {
         </div>
 
         {/* Map Container */}
-        <div ref={mapRef}>
-          <div className="rounded-3xl overflow-hidden h-[400px] md:h-[500px] lg:h-[600px]">
+        <div ref={mapRef} className="max-w-full">
+          <div className="rounded-3xl overflow-hidden h-[400px] md:h-[500px] lg:h-[600px] max-w-full">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.8945!2d34.6384!3d31.8082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b7c8e8e8e8e8%3A0x1234567890abcdef!2sExodus%20St%2030%2C%20Ashdod!5e0!3m2!1sen!2sil!4v1234567890"
               width="100%"
               height="100%"
-              style={{ border: 0 }}
+              style={{ border: 0, maxWidth: '100%' }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

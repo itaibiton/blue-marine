@@ -9,7 +9,7 @@ import { ContactFAQSection } from '@/components/sections/ContactFAQSection';
 
 export default function Home() {
   return (
-    <div className="bg-[var(--color-background)] flex flex-col items-center w-full min-h-screen">
+    <div className="bg-[var(--color-background)] flex flex-col items-center w-full min-h-screen overflow-x-hidden">
       <Navbar />
 
       <HeroSection />

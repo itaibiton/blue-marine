@@ -10,7 +10,7 @@ export const Page = forwardRef<HTMLDivElement, PageProps>(({ children, className
   return (
     <div
       ref={ref}
-      className={`flex flex-col w-full px-4 md:px-8 lg:px-[8rem] ${fullHeight ? 'min-h-screen justify-center' : ''} ${className}`}
+      className={`flex flex-col w-full max-w-full px-4 md:px-8 lg:px-[8rem] overflow-x-hidden ${fullHeight ? 'min-h-screen justify-center' : ''} ${className}`}
     >
       {children}
     </div>
