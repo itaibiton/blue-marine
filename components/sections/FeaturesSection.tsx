@@ -23,10 +23,6 @@ const FeatureCard = forwardRef<HTMLDivElement, {
           bgColor || 'bg-white/10 backdrop-blur-sm border border-white/20',
           className
         )}
-        style={{
-          animationDelay: `${delay}ms`,
-          animation: 'fadeInUp 0.8s ease-out forwards'
-        }}
       >
         <div className="relative z-10">
           <p className="font-medium text-3xl md:text-4xl lg:text-5xl text-center">
@@ -102,23 +98,22 @@ export const FeaturesSection = () => {
 
     if (!section || cards.length === 0) return;
 
+    // Set initial state
+    gsap.set(cards, { opacity: 0, y: 50 });
+
     // Animate each feature card with stagger
-    gsap.fromTo(cards,
-      { opacity: 0, y: 80, rotateX: -15 },
-      {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 70%',
+        toggleActions: 'play none none reset',
+      },
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());

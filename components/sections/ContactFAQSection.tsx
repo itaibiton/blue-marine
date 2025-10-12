@@ -107,7 +107,7 @@ export const ContactFAQSection = () => {
   ];
 
   return (
-    <Page ref={sectionRef} className="gap-8 md:gap-12 relative">
+    <Page ref={sectionRef} className="gap-8 md:gap-12 relative pb-12 md:pb-0">
       {/* Section Title */}
       {/* <div className="relative z-10 text-center mb-4">
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--color-primary)] mb-2" dir="auto">

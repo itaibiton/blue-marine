@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -175,10 +176,12 @@ export const GallerySection = () => {
       </div>
 
       <div ref={buttonRef}>
-        <Button className='rounded-full px-4 flex items-center gap-2' variant="default">
-          לגלריה
-          <ChevronLeft />
-        </Button>
+        <Link href="/gallery">
+          <Button className='rounded-full px-4 flex items-center gap-2' variant="default">
+            לגלריה
+            <ChevronLeft />
+          </Button>
+        </Link>
       </div>
     </div>
   );
