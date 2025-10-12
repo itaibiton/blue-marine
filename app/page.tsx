@@ -5,8 +5,7 @@ import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
-import { FAQSection } from '@/components/sections/FAQSection';
-import { ContactSection } from '@/components/sections/ContactSection';
+import { ContactFAQSection } from '@/components/sections/ContactFAQSection';
 
 export default function Home() {
   return (
@@ -16,8 +15,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <FeaturesSection />
-      <FAQSection />
-      <ContactSection />
+      <ContactFAQSection />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ChevronLeft } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,7 +136,9 @@ export const GallerySection = () => {
         {galleryImages.map((item, idx) => (
           <div
             key={idx}
-            ref={el => (imagesRef.current[idx] = el)}
+            ref={el => {
+              imagesRef.current[idx] = el;
+            }}
             onMouseEnter={() => handleImageInteraction(idx)}
             onClick={() => handleImageInteraction(idx)}
             className="relative rounded-[24px] overflow-hidden cursor-pointer"
@@ -172,7 +175,10 @@ export const GallerySection = () => {
       </div>
 
       <div ref={buttonRef}>
-        <Button variant="default">לגלריה</Button>
+        <Button className='rounded-full px-4 flex items-center gap-2' variant="default">
+          לגלריה
+          <ChevronLeft />
+        </Button>
       </div>
     </div>
   );
