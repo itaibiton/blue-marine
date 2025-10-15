@@ -2,7 +2,7 @@ import { Mail } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-[var(--color-primary)] text-white py-8 px-4 md:px-8 lg:px-[8rem]">
+    <footer className="w-full bg-[var(--color-primary)] text-white py-10 md:py-12 px-4 md:px-8 lg:px-[8rem]">
       <div className="flex flex-col gap-6 w-full max-w-full">
         {/* Top Section - Links */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 pb-6 border-b border-white/20">

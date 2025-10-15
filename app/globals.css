@@ -1,39 +1,129 @@
+/**
+ * Blue Marine - Global Styles
+ * Premium Bridal Venue Landing Page
+ *
+ * This stylesheet implements a comprehensive design system using:
+ * - Tailwind CSS v4 (CSS-first configuration)
+ * - rem units for all spacing and typography (accessibility-first)
+ * - Custom CSS variables for consistent theming
+ * - Hebrew (RTL) language support
+ *
+ * Architecture:
+ * 1. Base Tailwind imports
+ * 2. CSS custom properties (:root)
+ * 3. Tailwind theme inline tokens (@theme inline)
+ * 4. Global styles and resets
+ * 5. Dark mode overrides
+ *
+ * @see /lib/design-tokens.ts for TypeScript token definitions
+ */
+
+/* =========================================================================
+   TAILWIND IMPORTS
+   ========================================================================= */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* =========================================================================
+   CUSTOM VARIANTS
+   ========================================================================= */
+
+/**
+ * Dark mode variant using .dark class
+ * Allows manual dark mode control with class-based toggling
+ */
 @custom-variant dark (&:is(.dark *));
 
+/* =========================================================================
+   CSS CUSTOM PROPERTIES - DESIGN TOKENS
+   ==========================================================================
+
+   Why CSS Variables?
+   - Runtime theme switching without recompilation
+   - Cascade-friendly for component overrides
+   - Better performance than static values
+   - Semantic naming for maintainability
+
+   Why rem units over px?
+   - Respects user's browser font size preferences (WCAG 2.1 AA)
+   - Consistent scaling across all devices
+   - Easier responsive design with predictable ratios
+   - Better accessibility for visually impaired users
+
+   Base calculation: 1rem = 16px (browser default)
+   Example: 10px = 0.625rem, 24px = 1.5rem, 64px = 4rem
+   ========================================================================= */
+
 :root {
+  /* -----------------------------------------------------------------------
+     COLOR TOKENS - Brand Identity
+     ----------------------------------------------------------------------- */
+
+  /* Primary (Teal) - Ocean-inspired, luxury, tranquility */
   --color-primary: #4c6973;
   --color-primary-light: #6e8891;
+  --color-primary-dark: #3a5159;
+
+  /* Secondary (Gold) - Elegance, premium, celebration */
   --color-secondary: #d9c7a3;
   --color-secondary-dark: #bfa273;
   --color-secondary-light: #ede1c9;
+
+  /* Background - Warm off-white for welcoming atmosphere */
   --color-background: #faf9f7;
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+
+  /* -----------------------------------------------------------------------
+     SHADCN/UI COLOR SYSTEM (OKLCH)
+     -----------------------------------------------------------------------
+     Using OKLCH color space for perceptually uniform colors
+     Better for accessibility and color manipulations
+     ----------------------------------------------------------------------- */
+
+  /* Base colors */
+  --background: oklch(1 0 0);                    /* Pure white */
+  --foreground: oklch(0.145 0 0);                /* Near black for text */
+
+  /* Card components */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
+
+  /* Popover components */
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
+
+  /* Primary UI elements */
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
+
+  /* Secondary UI elements */
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
+
+  /* Muted elements (disabled, placeholder) */
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
+
+  /* Accent elements (highlights, badges) */
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
+
+  /* Destructive actions (delete, error) */
   --destructive: oklch(0.577 0.245 27.325);
+
+  /* Borders and dividers */
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+
+  /* Chart colors for data visualization */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Sidebar components */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -42,83 +132,251 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* -----------------------------------------------------------------------
+     SPACING TOKENS - 8px Grid System
+     -----------------------------------------------------------------------
+     Based on 0.5rem (8px) base unit for visual rhythm
+     All spacing follows multiples of 8px for consistency
+     ----------------------------------------------------------------------- */
+
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  --spacing-32: 8rem;     /* 128px */
+
+  /* -----------------------------------------------------------------------
+     TYPOGRAPHY TOKENS
+     -----------------------------------------------------------------------
+     Modular scale for hierarchical typography
+     Line heights optimized for readability in Hebrew text
+     ----------------------------------------------------------------------- */
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 2.5rem;    /* 40px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.5rem;    /* 56px */
+
+  /* Line heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* -----------------------------------------------------------------------
+     LAYOUT TOKENS
+     ----------------------------------------------------------------------- */
+
+  /* Border radius - Using rem for consistent scaling */
+  --radius: 0.625rem;  /* 10px - Default border radius */
+
+  /* Layout dimensions */
+  --navbar-height: 4rem;          /* 64px */
+  --navbar-mobile-height: 3.5rem; /* 56px */
+  --max-content-width: 75rem;     /* 1200px */
+  --container-padding: var(--spacing-4);
+
+  /* -----------------------------------------------------------------------
+     EFFECT TOKENS
+     ----------------------------------------------------------------------- */
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition-base: 250ms;
+  --transition-slow: 350ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-index scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
 }
 
+/* =========================================================================
+   TAILWIND THEME INLINE - V4 CSS-FIRST CONFIGURATION
+   ==========================================================================
+
+   Tailwind v4 uses CSS-first configuration via @theme inline
+   This exposes our custom tokens as standard Tailwind utilities
+
+   Usage: <div className="text-primary bg-secondary p-4">
+
+   Benefits:
+   - Type-safe tokens (via TypeScript)
+   - Auto-completion in editors
+   - Consistent with Tailwind conventions
+   - Easy to extend and maintain
+   ========================================================================= */
+
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Brand colors exposed as Tailwind utilities */
   --color-primary: #4c6973;
   --color-primary-light: #6e8891;
+  --color-primary-dark: #3a5159;
   --color-secondary: #d9c7a3;
   --color-secondary-dark: #bfa273;
   --color-secondary-light: #ede1c9;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+
+  /* Shadcn/UI system colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar colors */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Border radius scale - Using rem for accessibility */
+  --radius-sm: 0.375rem;   /* 6px - Calculated: 0.625rem - 0.25rem */
+  --radius-md: 0.5rem;     /* 8px - Calculated: 0.625rem - 0.125rem */
+  --radius-lg: var(--radius);  /* 10px - Default */
+  --radius-xl: 0.875rem;   /* 14px - Calculated: 0.625rem + 0.25rem */
 }
 
+/* =========================================================================
+   GLOBAL STYLES & RESETS
+   ========================================================================= */
+
+/**
+ * Base body styles
+ * - Font family optimized for Hebrew text
+ * - Prevents horizontal scroll on all devices
+ * - Sets base font size for rem calculations
+ */
 body {
-  font-family: 'Noto Sans Hebrew', Arial, Helvetica, sans-serif;
+  font-family: var(--font-hebrew, 'Noto Sans Hebrew'), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  font-size: 1rem; /* 16px - Base for all rem calculations */
+  line-height: var(--line-height-normal);
 }
 
+/**
+ * Universal box-sizing and RTL direction
+ * - Border-box prevents sizing issues
+ * - RTL direction for Hebrew language support
+ * - Outline for focus states (accessibility)
+ */
 * {
   box-sizing: border-box;
   direction: rtl;
 }
 
+/* =========================================================================
+   DARK MODE OVERRIDES
+   ==========================================================================
+
+   Dark mode color scheme using OKLCH color space
+   Triggered by .dark class on html or parent element
+   ========================================================================= */
+
 .dark {
+  /* Base colors */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+
+  /* Card components */
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
+
+  /* Popover components */
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
+
+  /* Primary UI elements */
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
+
+  /* Secondary UI elements */
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
+
+  /* Muted elements */
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+
+  /* Accent elements */
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+
+  /* Destructive actions */
   --destructive: oklch(0.704 0.191 22.216);
+
+  /* Borders with transparency for layering */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+
+  /* Chart colors - adjusted for dark backgrounds */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+
+  /* Sidebar in dark mode */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -129,11 +387,57 @@ body {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* =========================================================================
+   TAILWIND BASE LAYER
+   ==========================================================================
+
+   Apply Tailwind utilities to base elements
+   - Consistent border and outline colors
+   - Background and text colors from theme
+   ========================================================================= */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* =========================================================================
+   CUSTOM ANIMATIONS - COMPONENT ANIMATIONS
+   ==========================================================================
+
+   Animation keyframes used by section components
+   - Using rem units for consistent scaling
+   - Optimized for performance with transform properties
+   ========================================================================= */
+
+/* Fade in with upward movement - Used in FeaturesSection cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.875rem); /* 30px */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating animation - Subtle hover effect for feature cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.625rem); /* -10px */
+  }
+}
+
+/* Float animation utility class */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
 }

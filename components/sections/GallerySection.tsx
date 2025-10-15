@@ -15,6 +15,7 @@ interface GalleryImage {
   alt: string;
 }
 
+// Animation constants - Using pixel values for GSAP (converted internally)
 const COLLAPSED_WIDTH = 100;
 const EXPANDED_FLEX_GROW = 1;
 const ANIMATION_DURATION = 0.7;
@@ -44,7 +45,7 @@ export const GallerySection = () => {
 
     if (!container || !button || images.length === 0) return;
 
-    // Set initial state for all images
+    // Set initial flex state for all images (middle image expanded by default)
     images.forEach((img, idx) => {
       gsap.set(img, {
         flexGrow: idx === 3 ? EXPANDED_FLEX_GROW : 0,
@@ -53,7 +54,7 @@ export const GallerySection = () => {
       });
     });
 
-    // Scroll reveal animation
+    // Scroll reveal animation with stagger for gallery images
     gsap.fromTo(
       images,
       { opacity: 0, y: 30 },
@@ -71,7 +72,7 @@ export const GallerySection = () => {
       }
     );
 
-    // Button animation
+    // Button animation with delay
     gsap.fromTo(
       button,
       { opacity: 0, y: 30 },
@@ -94,16 +95,16 @@ export const GallerySection = () => {
     };
   }, []); // Empty dependency array - runs once on mount
 
-  // Handle expansion animation
+  // Handle expansion animation when hovered/clicked image changes
   useEffect(() => {
     const images = imagesRef.current.filter(Boolean);
     if (images.length === 0) return;
 
-    // Kill any existing animations
+    // Kill any existing animations to prevent conflicts
     animationsRef.current.forEach(anim => anim.kill());
     animationsRef.current = [];
 
-    // Animate all images to their new state
+    // Animate all images to their new expanded/collapsed state
     images.forEach((img, idx) => {
       const isExpanded = idx === expandedIndex;
 
@@ -131,9 +132,9 @@ export const GallerySection = () => {
   };
 
   return (
-    <div ref={containerRef} className="flex flex-col gap-[32px] items-center justify-center w-full">
-      {/* Desktop Gallery */}
-      <div className="hidden md:flex gap-4 w-full h-[400px]">
+    <div ref={containerRef} className="flex flex-col gap-8 items-center justify-center w-full">
+      {/* Desktop Gallery - Interactive expanding cards */}
+      <div className="hidden md:flex gap-4 w-full h-96 md:h-[31.25rem] lg:h-[37.5rem]">
         {galleryImages.map((item, idx) => (
           <div
             key={idx}
@@ -142,7 +143,7 @@ export const GallerySection = () => {
             }}
             onMouseEnter={() => handleImageInteraction(idx)}
             onClick={() => handleImageInteraction(idx)}
-            className="relative rounded-[24px] overflow-hidden cursor-pointer"
+            className="relative rounded-3xl overflow-hidden cursor-pointer"
           >
             <Image
               src={item.src}
@@ -155,20 +156,20 @@ export const GallerySection = () => {
         ))}
       </div>
 
-      {/* Mobile Gallery - Horizontal Scroll */}
+      {/* Mobile Gallery - Horizontal scroll with snap */}
       <div className="md:hidden w-full overflow-x-auto overflow-y-hidden">
         <div className="flex gap-4 snap-x snap-mandatory pb-2">
           {galleryImages.map((item, idx) => (
             <div
               key={idx}
-              className="relative rounded-[24px] overflow-hidden flex-shrink-0 w-[280px] h-[350px] snap-center"
+              className="relative rounded-3xl overflow-hidden flex-shrink-0 w-72 h-96 snap-center"
             >
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
                 className="object-cover"
-                sizes="280px"
+                sizes="288px"
               />
             </div>
           ))}
@@ -177,7 +178,7 @@ export const GallerySection = () => {
 
       <div ref={buttonRef}>
         <Link href="/gallery">
-          <Button className='rounded-full px-4 flex items-center gap-2' variant="default">
+          <Button className="rounded-full px-6 h-10 flex items-center gap-2" variant="default">
             לגלריה
             <ChevronLeft />
           </Button>

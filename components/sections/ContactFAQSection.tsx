@@ -28,7 +28,7 @@ export const ContactFAQSection = () => {
 
     if (!section || !faq || !map || !contactInfo) return;
 
-    // FAQ animation - fade in only
+    // FAQ animation - smooth fade in with subtle upward movement
     gsap.fromTo(faq,
       { opacity: 0, y: 20 },
       {
@@ -44,7 +44,7 @@ export const ContactFAQSection = () => {
       }
     );
 
-    // Map animation - fade in only
+    // Map animation - staggered with FAQ
     gsap.fromTo(map,
       { opacity: 0, y: 20 },
       {
@@ -61,7 +61,7 @@ export const ContactFAQSection = () => {
       }
     );
 
-    // Contact info animation - fade in
+    // Contact info animation - final element with delay
     gsap.fromTo(contactInfo,
       { opacity: 0, y: 20 },
       {
@@ -107,18 +107,8 @@ export const ContactFAQSection = () => {
   ];
 
   return (
-    <Page ref={sectionRef} className="gap-8 md:gap-12 relative pb-12 md:pb-0">
-      {/* Section Title */}
-      {/* <div className="relative z-10 text-center mb-4">
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--color-primary)] mb-2" dir="auto">
-          שאלות נפוצות ויצירת קשר
-        </h2>
-        <p className=" md:text-lg text-[var(--color-primary-light)]" dir="auto">
-          כל המידע שאת צריכה במקום אחד
-        </p>
-      </div> */}
-
-      {/* FAQ and Map - Side by Side */}
+    <Page ref={sectionRef} className="gap-12 md:gap-16 relative pb-12 md:pb-0">
+      {/* FAQ and Map - Side by Side Layout */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full max-w-full items-start">
         {/* FAQ Section */}
         <div ref={faqRef} className="max-w-full">
@@ -130,11 +120,13 @@ export const ContactFAQSection = () => {
                   value={`item-${idx}`}
                   className="border-[var(--color-primary-light)]/30 border-b last:border-b-0"
                 >
-                  <AccordionTrigger className="text-[16px] md:text-[18px] text-[var(--color-primary)] text-right hover:no-underline font-semibold py-4 hover:text-[var(--color-secondary)] transition-colors">
+                  {/* FAQ question with improved typography */}
+                  <AccordionTrigger className="text-base md:text-lg text-[var(--color-primary)] text-right hover:no-underline font-semibold py-4 hover:text-[var(--color-secondary)] transition-colors">
                     <span dir="auto" className="text-right w-full">{item.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-[14px] md:text-[16px] text-[var(--color-primary-light)] text-right pb-4">
-                    <p dir="auto" className="leading-[24px] md:leading-[28px]">
+                  {/* FAQ answer with relaxed leading for readability */}
+                  <AccordionContent className="text-sm md:text-base text-[var(--color-primary-light)] text-right pb-4">
+                    <p dir="auto" className="leading-relaxed">
                       {item.answer}
                     </p>
                   </AccordionContent>
@@ -144,9 +136,9 @@ export const ContactFAQSection = () => {
           </div>
         </div>
 
-        {/* Map Container */}
+        {/* Map Container - Progressive height scaling */}
         <div ref={mapRef} className="max-w-full">
-          <div className="rounded-3xl overflow-hidden h-[400px] md:h-[500px] lg:h-[600px] max-w-full">
+          <div className="rounded-3xl overflow-hidden h-96 md:h-[31.25rem] lg:h-[37.5rem] max-w-full">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.8945!2d34.6384!3d31.8082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502b7c8e8e8e8e8%3A0x1234567890abcdef!2sExodus%20St%2030%2C%20Ashdod!5e0!3m2!1sen!2sil!4v1234567890"
               width="100%"
@@ -161,7 +153,7 @@ export const ContactFAQSection = () => {
         </div>
       </div>
 
-      {/* Contact Info - Full Width Below */}
+      {/* Contact Info - Full width below map and FAQ */}
       <div ref={contactInfoRef} className="relative z-10 w-full">
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center justify-center">
           {/* Phone */}

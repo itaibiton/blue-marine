@@ -22,14 +22,14 @@ export const HeroSection = () => {
 
     if (!section || !title || !image || !cta) return;
 
-    // Check if mobile (disable parallax on mobile)
+    // Check if mobile (disable parallax on mobile for performance)
     const isMobile = window.innerWidth < 768;
 
     if (!isMobile) {
       // Image parallax - subtle scale and upward movement (desktop only)
       gsap.to(image, {
         scale: 1.2,
-        y: -30,
+        y: -30, // -1.875rem equivalent
         ease: 'power1.out',
         scrollTrigger: {
           trigger: section,
@@ -47,19 +47,19 @@ export const HeroSection = () => {
 
   return (
     <div ref={sectionRef} className="flex flex-col w-full min-h-screen relative overflow-hidden">
-      {/* Title Section with Parallax */}
+      {/* Title Section - Smooth typography progression */}
       <div
         ref={titleRef}
-        className="flex items-center justify-center pt-[80px] md:pt-[120px] pb-[16px] md:pb-[32px] px-4 md:px-8 lg:px-[8rem]"
+        className="flex items-center justify-center pt-20 md:pt-32 pb-6 md:pb-8 px-4 md:px-8 lg:px-32"
       >
-        <p className="font-semibold leading-[32px] md:leading-[48px] lg:leading-[64px] text-[24px] md:text-[36px] lg:text-[48px] text-center" dir="auto">
+        <p className="font-semibold leading-tight text-2xl md:text-4xl lg:text-5xl text-center" dir="auto">
           <span className="text-[var(--color-secondary)]">היום המאושר והמרגש בחייך </span>
           <span className="text-[var(--color-primary)]">מתחיל כאן</span>
         </p>
       </div>
 
-      {/* Full Width Video with Parallax */}
-      <div className="relative w-full h-[300px] md:h-[450px] lg:h-[600px] overflow-hidden">
+      {/* Full Width Video with Parallax - Progressive height scaling */}
+      <div className="relative w-full h-80 md:h-96 lg:h-[37.5rem] overflow-hidden">
         <div
           ref={imageRef}
           className="absolute inset-0 w-full h-full"
@@ -78,12 +78,12 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* CTA Section with Parallax */}
+      {/* CTA Section - Consistent spacing scale */}
       <div
         ref={ctaRef}
-        className="flex items-center justify-center py-[24px] md:py-[36px] lg:py-[48px] px-4 md:px-8 lg:px-[8rem]"
+        className="flex items-center justify-center py-8 md:py-10 lg:py-12 px-4 md:px-8 lg:px-32"
       >
-        <Button className='rounded-full px-4 flex items-center gap-2' variant="default">
+        <Button className="rounded-full px-4 flex items-center gap-2" variant="default">
           גלי עוד
           <ChevronDown />
         </Button>

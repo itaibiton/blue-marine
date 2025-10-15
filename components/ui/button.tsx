@@ -4,21 +4,41 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * Button Variants using Class Variance Authority (CVA)
+ *
+ * Provides a comprehensive set of button styles with multiple variants and sizes.
+ * All sizing uses standard Tailwind classes or design system tokens.
+ *
+ * Variants:
+ * - default: Primary brand button with teal background
+ * - destructive: For dangerous actions (delete, remove, etc.)
+ * - outline: Bordered button with transparent background
+ * - secondary: Gold accent button for secondary actions
+ * - ghost: Minimal button for tertiary actions
+ * - link: Text-only button with underline on hover
+ *
+ * Sizes:
+ * - sm: Small button (h-8)
+ * - default: Standard button (h-9)
+ * - lg: Large button (h-10)
+ * - icon variants: Square icon-only buttons
+ */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-4 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
-        default: "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-light)] dark:bg-[var(--color-primary-light)] dark:hover:bg-[var(--color-primary)]",
+        default: "bg-primary text-white hover:bg-primary-light dark:bg-primary-light dark:hover:bg-primary",
         destructive:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
-          "bg-[var(--color-secondary)] text-[var(--color-primary)] hover:bg-[var(--color-secondary-light)] dark:bg-[var(--color-secondary-dark)] dark:text-white",
+          "bg-secondary text-primary hover:bg-secondary-light dark:bg-secondary-dark dark:text-white",
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-[var(--color-primary)] underline-offset-4 hover:underline hover:text-[var(--color-primary-light)]",
+        link: "text-primary underline-offset-4 hover:underline hover:text-primary-light",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

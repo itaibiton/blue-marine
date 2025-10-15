@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { ImageModal } from '@/components/ImageModal';
 import { gsap } from 'gsap';
@@ -79,15 +79,16 @@ export const GalleryGrid = () => {
 
   return (
     <>
+      {/* Masonry grid with responsive row heights for premium gallery experience */}
       <div
         ref={gridRef}
-        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-full auto-rows-[200px] md:auto-rows-[250px]"
+        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-full auto-rows-[12.5rem] md:auto-rows-[15.625rem]"
       >
         {galleryImages.map((image, index) => (
           <div
             key={index}
             className={cn(
-              'relative overflow-hidden rounded-2xl cursor-pointer group',
+              'relative overflow-hidden rounded-3xl cursor-pointer group',
               'col-span-1 row-span-1',
               image.span
             )}
@@ -98,9 +99,9 @@ export const GalleryGrid = () => {
               alt={image.alt}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 25vw"
+              sizes="(max-width: 48rem) 100vw, (max-width: 64rem) 33vw, 25vw"
             />
-            {/* Overlay on hover */}
+            {/* Overlay on hover for visual feedback */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
           </div>
         ))}

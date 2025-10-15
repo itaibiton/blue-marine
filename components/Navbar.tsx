@@ -52,9 +52,9 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-background)] flex h-[64px] md:h-[80px] items-center justify-between w-full px-4 md:px-8 lg:px-[8rem]">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-background)] flex h-16 md:h-20 items-center justify-between w-full px-4 md:px-8 lg:px-[8rem]">
         {/* Desktop Navigation - Hidden on mobile */}
-        <div className="hidden md:flex gap-[32px] items-start justify-center">
+        <div className="hidden md:flex gap-8 items-start justify-center">
           <NavLink text="דף הבית" href="/" />
           <NavLink text="הפנטהאוז" />
           <NavLink text="גלריה" href="/gallery" />
@@ -64,10 +64,10 @@ export const Navbar = () => {
         {/* Logo - Centered on mobile, right side on desktop */}
         <div className="flex gap-4 md:order-last">
           <div className="flex flex-col items-center justify-center">
-            <p className="font-['Source_Serif_Pro',serif] font-semibold text-[18px] md:text-[24px] text-[var(--color-primary)] tracking-[2.4px]">
+            <p className="font-['Source_Serif_Pro',serif] font-semibold text-lg md:text-2xl text-[var(--color-primary)] tracking-widest">
               BLUE MARINE
             </p>
-            <p className="font-['Source_Serif_Pro',serif] font-normal text-[10px] md:text-[14px] text-[var(--color-secondary-dark)] tracking-[2.8px]">
+            <p className="font-['Source_Serif_Pro',serif] font-normal text-xs md:text-sm text-[var(--color-secondary-dark)] tracking-widest opacity-90">
               PALACE OF BRIDES
             </p>
           </div>
@@ -86,10 +86,10 @@ export const Navbar = () => {
       {/* Mobile Menu Drawer */}
       <div
         ref={mobileMenuRef}
-        className="fixed top-0 right-0 h-full w-[280px] bg-[var(--color-background)] z-40 md:hidden shadow-2xl translate-x-full"
+        className="fixed top-0 right-0 h-full w-72 bg-[var(--color-background)] z-40 md:hidden shadow-2xl translate-x-full"
         style={{ transform: 'translateX(100%)' }}
       >
-        <div className="flex flex-col gap-8 pt-24 px-8">
+        <div className="flex flex-col gap-6 pt-20 px-6">
           <NavLink text="דף הבית" href="/" onClick={handleNavClick} />
           <NavLink text="הפנטהאוז" onClick={handleNavClick} />
           <NavLink text="גלריה" href="/gallery" onClick={handleNavClick} />
