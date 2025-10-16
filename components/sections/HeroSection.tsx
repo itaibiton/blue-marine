@@ -59,7 +59,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Full Width Video with Parallax - Progressive height scaling */}
-      <div className="relative w-full h-80 md:h-96 lg:h-[37.5rem] overflow-hidden">
+      <div className="relative w-full h-80 md:h-96 lg:h-[35rem] overflow-hidden">
         <div
           ref={imageRef}
           className="absolute inset-0 w-full h-full"
@@ -83,7 +83,12 @@ export const HeroSection = () => {
         ref={ctaRef}
         className="flex items-center justify-center py-8 md:py-10 lg:py-12 px-4 md:px-8 lg:px-32"
       >
-        <Button className="rounded-full px-4 flex items-center gap-2" variant="default">
+        <Button size="lg" className="rounded-full px-4 flex items-center gap-2" variant="default" onClick={() => {
+          window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth',
+          });
+        }}>
           גלי עוד
           <ChevronDown />
         </Button>

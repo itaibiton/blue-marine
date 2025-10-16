@@ -84,7 +84,7 @@ export const AboutSection = () => {
   }, []);
 
   return (
-    <Page ref={sectionRef} className="gap-12 md:gap-16 items-center text-center">
+    <Page ref={sectionRef} id="about" data-section="about" className="gap-12 md:gap-16 items-center text-center">
       <div className="w-full max-w-full md:max-w-[54.25rem]">
         {/* Primary heading - H2 level with improved hierarchy */}
         <p ref={heading1Ref} className="leading-tight text-3xl md:text-4xl text-[var(--color-primary-light)] w-full" dir="auto">

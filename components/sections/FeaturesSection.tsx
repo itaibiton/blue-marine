@@ -93,7 +93,7 @@ export const FeaturesSection = () => {
   }, []);
 
   return (
-    <Page ref={sectionRef} className="gap-8 md:gap-12 relative">
+    <Page ref={sectionRef} id="features" data-section="features" className="gap-8 md:gap-12 relative">
       <div className="relative z-10 w-full">
         {/* Dynamic bento grid layout with responsive columns */}
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 auto-rows-fr max-w-full">

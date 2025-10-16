@@ -5,19 +5,26 @@ import { Menu, X } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-const NavLink = ({ text, onClick, href }: { text: string; onClick?: () => void; href?: string }) => {
+const NavLink = ({ text, onClick, href, isMobile }: { text: string; onClick?: () => void; href?: string; isMobile?: boolean }) => {
+  const pathname = usePathname();
+  const isActive = href && pathname === href;
+
   if (href) {
     return (
       <Link href={href} onClick={onClick}>
-        <Button variant="link" className="cursor-pointer">
+        <Button
+          variant="link"
+          className={`cursor-pointer ${isMobile ? 'text-lg font-medium' : ''} ${isActive ? 'text-[var(--color-secondary)] underline underline-offset-4' : ''}`}
+        >
           {text}
         </Button>
       </Link>
     );
   }
   return (
-    <Button variant="link" className="cursor-pointer" onClick={onClick}>
+    <Button variant="link" className={`cursor-pointer ${isMobile ? 'text-lg font-medium' : ''}`} onClick={onClick}>
       {text}
     </Button>
   );
@@ -63,14 +70,16 @@ export const Navbar = () => {
 
         {/* Logo - Centered on mobile, right side on desktop */}
         <div className="flex gap-4 md:order-last">
-          <div className="flex flex-col items-center justify-center">
-            <p className="font-['Source_Serif_Pro',serif] font-semibold text-lg md:text-2xl text-[var(--color-primary)] tracking-widest">
-              BLUE MARINE
-            </p>
-            <p className="font-['Source_Serif_Pro',serif] font-normal text-xs md:text-sm text-[var(--color-secondary-dark)] tracking-widest opacity-90">
-              PALACE OF BRIDES
-            </p>
-          </div>
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <div className="flex flex-col items-center justify-center">
+              <p className="font-['Source_Serif_Pro',serif] font-semibold text-lg md:text-2xl text-[var(--color-primary)] tracking-widest">
+                BLUE MARINE
+              </p>
+              <p className="font-['Source_Serif_Pro',serif] font-normal text-xs md:text-sm text-[var(--color-secondary-dark)] tracking-widest opacity-90">
+                PALACE OF BRIDES
+              </p>
+            </div>
+          </Link>
         </div>
 
         {/* Mobile Hamburger Menu - Hidden on desktop */}
@@ -86,14 +95,22 @@ export const Navbar = () => {
       {/* Mobile Menu Drawer */}
       <div
         ref={mobileMenuRef}
-        className="fixed top-0 right-0 h-full w-72 bg-[var(--color-background)] z-40 md:hidden shadow-2xl translate-x-full"
+        className="fixed top-0 right-0 h-full w-80 sm:w-96 bg-[var(--color-background)] z-40 md:hidden shadow-2xl translate-x-full"
         style={{ transform: 'translateX(100%)' }}
       >
-        <div className="flex flex-col gap-6 pt-20 px-6">
-          <NavLink text="דף הבית" href="/" onClick={handleNavClick} />
-          <NavLink text="הפנטהאוז" onClick={handleNavClick} />
-          <NavLink text="גלריה" href="/gallery" onClick={handleNavClick} />
-          <NavLink text="יצירת קשר" onClick={handleNavClick} />
+        <div className="flex flex-col gap-6 pt-24 px-8">
+          <div className="h-11">
+            <NavLink text="דף הבית" href="/" onClick={handleNavClick} isMobile />
+          </div>
+          <div className="h-11">
+            <NavLink text="הפנטהאוז" onClick={handleNavClick} isMobile />
+          </div>
+          <div className="h-11">
+            <NavLink text="גלריה" href="/gallery" onClick={handleNavClick} isMobile />
+          </div>
+          <div className="h-11">
+            <NavLink text="יצירת קשר" onClick={handleNavClick} isMobile />
+          </div>
         </div>
       </div>
 

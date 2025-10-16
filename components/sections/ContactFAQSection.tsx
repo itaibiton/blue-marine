@@ -107,7 +107,7 @@ export const ContactFAQSection = () => {
   ];
 
   return (
-    <Page ref={sectionRef} className="gap-12 md:gap-16 relative pb-12 md:pb-0">
+    <Page ref={sectionRef} id="contact" data-section="contact" className="gap-12 md:gap-16 relative pb-12 md:pb-0">
       {/* FAQ and Map - Side by Side Layout */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full max-w-full items-start">
         {/* FAQ Section */}

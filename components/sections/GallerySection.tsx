@@ -134,7 +134,7 @@ export const GallerySection = () => {
   return (
     <div ref={containerRef} className="flex flex-col gap-8 items-center justify-center w-full">
       {/* Desktop Gallery - Interactive expanding cards */}
-      <div className="hidden md:flex gap-4 w-full h-96 md:h-[31.25rem] lg:h-[37.5rem]">
+      <div className="hidden md:flex gap-4 w-full h-96 md:h-[31.25rem] lg:h-[30rem]">
         {galleryImages.map((item, idx) => (
           <div
             key={idx}
@@ -178,7 +178,7 @@ export const GallerySection = () => {
 
       <div ref={buttonRef}>
         <Link href="/gallery">
-          <Button className="rounded-full px-6 h-10 flex items-center gap-2" variant="default">
+          <Button className="rounded-full px-6 h-11 md:h-12 flex items-center gap-2" variant="default">
             לגלריה
             <ChevronLeft />
           </Button>
