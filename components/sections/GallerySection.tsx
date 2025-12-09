@@ -22,13 +22,13 @@ const ANIMATION_DURATION = 0.7;
 
 export const GallerySection = () => {
   const galleryImages: GalleryImage[] = [
-    { src: '/gallery/8a56397e-afbb-4d8c-928f-0b04b0c96a88.JPG', alt: 'Gallery image 1' },
     { src: '/gallery/906a1380-5a46-45fb-ab2e-0ec08a897128.JPG', alt: 'Gallery image 2' },
     { src: '/gallery/94dbff9a-5e08-436f-9a85-e2899713e173.JPG', alt: 'Gallery image 3' },
     { src: '/gallery/gallery-main.JPG', alt: 'Main gallery image' },
+    { src: '/gallery/img1.jpg', alt: 'Gallery image 6' },
     { src: '/gallery/ac2508b8-baea-4df6-af78-792090ce5080.JPG', alt: 'Gallery image 4' },
     { src: '/gallery/adaa698b-9232-4eb3-a83c-c973f8dc7d68.JPG', alt: 'Gallery image 5' },
-    { src: '/gallery/img1.jpg', alt: 'Gallery image 6' },
+    { src: '/gallery/8a56397e-afbb-4d8c-928f-0b04b0c96a88.JPG', alt: 'Gallery image 1' },
   ];
 
   const [expandedIndex, setExpandedIndex] = useState(3); // Middle image expanded by default
