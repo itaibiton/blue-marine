@@ -163,7 +163,7 @@ export const ContactFAQSection = () => {
             className="flex items-center gap-3 text-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-colors"
           >
             <Phone className="w-5 h-5" />
-            <span className="text-lg md:text-xl font-medium" dir="ltr">050-358-6949</span>
+            <span className="text-lg md:text-xl font-medium" dir="ltr">055-222-3604</span>
           </a>
 
           {/* Divider */}
@@ -181,16 +181,16 @@ export const ContactFAQSection = () => {
           </a>
 
           {/* Divider */}
-          <div className="hidden md:block w-px h-6 bg-[var(--color-primary-light)]/30"></div>
+          {/* <div className="hidden md:block w-px h-6 bg-[var(--color-primary-light)]/30"></div> */}
 
-          {/* Email */}
+          {/* Email
           <a
             href="mailto:info@bluemarine.co.il"
             className="flex items-center gap-3 text-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-colors"
           >
             <Mail className="w-5 h-5" />
             <span className="text-lg md:text-xl font-medium" dir="ltr">info@bluemarine.co.il</span>
-          </a>
+          </a> */}
         </div>
       </div>
     </Page>

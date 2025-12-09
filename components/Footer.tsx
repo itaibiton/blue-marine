@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className="w-full bg-[var(--color-primary)] text-white py-10 md:py-12 px-4 md:px-8 lg:px-[8rem]">
       <div className="flex flex-col gap-6 w-full max-w-full">
         {/* Top Section - Links */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 pb-6 border-b border-white/20">
+        {/* <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 pb-6 border-b border-white/20">
           <a
             href="/privacy-policy.pdf"
             download
@@ -23,7 +23,7 @@ export const Footer = () => {
           >
             תנאי שימוש
           </a>
-        </div>
+        </div> */}
 
         {/* Bottom Section - Developer Credit */}
         <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-white/70">
