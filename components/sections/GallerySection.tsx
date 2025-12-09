@@ -22,13 +22,13 @@ const ANIMATION_DURATION = 0.7;
 
 export const GallerySection = () => {
   const galleryImages: GalleryImage[] = [
-    { src: '/gallery/img1.jpg', alt: 'Gallery image 1' },
-    { src: '/gallery/img2.jpg', alt: 'Gallery image 2' },
-    { src: '/gallery/img3.jpg', alt: 'Gallery image 3' },
-    { src: '/gallery/img4.jpg', alt: 'Gallery image 4' },
-    { src: '/gallery/img2.jpg', alt: 'Gallery image 5' },
-    { src: '/gallery/img6.jpg', alt: 'Gallery image 6' },
-    { src: '/gallery/img7.jpg', alt: 'Gallery image 7' },
+    { src: '/gallery/8a56397e-afbb-4d8c-928f-0b04b0c96a88.JPG', alt: 'Gallery image 1' },
+    { src: '/gallery/906a1380-5a46-45fb-ab2e-0ec08a897128.JPG', alt: 'Gallery image 2' },
+    { src: '/gallery/94dbff9a-5e08-436f-9a85-e2899713e173.JPG', alt: 'Gallery image 3' },
+    { src: '/gallery/gallery-main.JPG', alt: 'Main gallery image' },
+    { src: '/gallery/ac2508b8-baea-4df6-af78-792090ce5080.JPG', alt: 'Gallery image 4' },
+    { src: '/gallery/adaa698b-9232-4eb3-a83c-c973f8dc7d68.JPG', alt: 'Gallery image 5' },
+    { src: '/gallery/img1.jpg', alt: 'Gallery image 6' },
   ];
 
   const [expandedIndex, setExpandedIndex] = useState(3); // Middle image expanded by default
@@ -54,45 +54,46 @@ export const GallerySection = () => {
       });
     });
 
-    // Scroll reveal animation with stagger for gallery images
-    gsap.fromTo(
-      images,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 80%',
-          toggleActions: 'play none none reset',
-        },
-      }
-    );
+    // Create a context for proper cleanup
+    const ctx = gsap.context(() => {
+      // Scroll reveal animation with stagger for gallery images
+      gsap.fromTo(
+        images,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 80%',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
 
-    // Button animation with delay
-    gsap.fromTo(
-      button,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.6,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 80%',
-          toggleActions: 'play none none reset',
-        },
-      }
-    );
+      // Button animation with delay
+      gsap.fromTo(
+        button,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 80%',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
+    }, container);
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []); // Empty dependency array - runs once on mount
 
   // Handle expansion animation when hovered/clicked image changes

@@ -28,59 +28,60 @@ export const ContactFAQSection = () => {
 
     if (!section || !faq || !map || !contactInfo) return;
 
-    // FAQ animation - smooth fade in with subtle upward movement
-    gsap.fromTo(faq,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
+    // Create a context for proper cleanup
+    const ctx = gsap.context(() => {
+      // FAQ animation - smooth fade in with subtle upward movement
+      gsap.fromTo(faq,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
 
-    // Map animation - staggered with FAQ
-    gsap.fromTo(map,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
+      // Map animation - staggered with FAQ
+      gsap.fromTo(map,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
 
-    // Contact info animation - final element with delay
-    gsap.fromTo(contactInfo,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.4,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    );
+      // Contact info animation - final element with delay
+      gsap.fromTo(contactInfo,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.4,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }, section);
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   const faqItems = [

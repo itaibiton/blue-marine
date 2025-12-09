@@ -18,43 +18,43 @@ interface GalleryImage {
 // Gallery images from the homepage
 const galleryImages: GalleryImage[] = [
   {
-    src: '/gallery/img1.jpg',
+    src: '/gallery/gallery-main.JPG',
+    alt: 'Main gallery image',
+    span: 'md:col-span-2 md:row-span-2', // Large featured image
+  },
+  {
+    src: '/gallery/8a56397e-afbb-4d8c-928f-0b04b0c96a88.JPG',
     alt: 'Gallery image 1',
     span: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: '/gallery/img2.jpg',
+    src: '/gallery/906a1380-5a46-45fb-ab2e-0ec08a897128.JPG',
     alt: 'Gallery image 2',
-    span: 'md:col-span-2 md:row-span-2', // Large featured image
+    span: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: '/gallery/img3.jpg',
+    src: '/gallery/94dbff9a-5e08-436f-9a85-e2899713e173.JPG',
     alt: 'Gallery image 3',
     span: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: '/gallery/img4.jpg',
+    src: '/gallery/ac2508b8-baea-4df6-af78-792090ce5080.JPG',
     alt: 'Gallery image 4',
     span: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: '/gallery/img2.jpg',
+    src: '/gallery/adaa698b-9232-4eb3-a83c-c973f8dc7d68.JPG',
     alt: 'Gallery image 5',
     span: 'md:col-span-1 md:row-span-1',
   },
   {
-    src: '/gallery/img6.jpg',
+    src: '/gallery/img1.jpg',
     alt: 'Gallery image 6',
     span: 'md:col-span-2 md:row-span-1',
   },
   {
-    src: '/gallery/img7.jpg',
+    src: '/gallery/img2.jpg',
     alt: 'Gallery image 7',
-    span: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    src: '/gallery/img1.jpg',
-    alt: 'Gallery image 8',
     span: 'md:col-span-1 md:row-span-1',
   },
 ];

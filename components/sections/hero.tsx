@@ -31,7 +31,7 @@ function HeroMobile({ ...props }: React.ComponentProps<"div">) {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/hero-video.MP4" type="video/mp4" />
+          <source src="/gallery/hero-video.mov" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
@@ -82,18 +82,23 @@ function HeroDesktop({ ...props }: React.ComponentProps<"div">) {
     const isMobile = window.innerWidth < 768;
 
     if (!isMobile) {
-      // Image parallax - subtle scale and upward movement (desktop only)
-      gsap.to(image, {
-        scale: 1.2,
-        y: -30,
-        ease: 'power1.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 2,
-        },
-      });
+      // Create a context for proper cleanup
+      const ctx = gsap.context(() => {
+        // Image parallax - subtle scale and upward movement (desktop only)
+        gsap.to(image, {
+          scale: 1.2,
+          y: -30,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 2,
+          },
+        });
+      }, section);
+
+      return () => ctx.revert();
     }
 
     return () => {
@@ -140,7 +145,7 @@ function HeroDesktop({ ...props }: React.ComponentProps<"div">) {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/hero-video.MP4" type="video/mp4" />
+            <source src="/gallery/hero-video.mov" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

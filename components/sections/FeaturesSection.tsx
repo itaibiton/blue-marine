@@ -70,26 +70,27 @@ export const FeaturesSection = () => {
 
     if (!section || cards.length === 0) return;
 
-    // Set initial state for stagger animation
-    gsap.set(cards, { opacity: 0, y: 50 });
+    // Create a context for proper cleanup
+    const ctx = gsap.context(() => {
+      // Animate each feature card with progressive stagger effect
+      gsap.fromTo(cards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
+    }, section);
 
-    // Animate each feature card with progressive stagger effect
-    gsap.to(cards, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 70%',
-        toggleActions: 'play none none reset',
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (

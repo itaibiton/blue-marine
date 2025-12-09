@@ -63,9 +63,9 @@ export const Navbar = () => {
         {/* Desktop Navigation - Hidden on mobile */}
         <div className="hidden md:flex gap-8 items-start justify-center">
           <NavLink text="דף הבית" href="/" />
-          <NavLink text="הפנטהאוז" />
+          <NavLink text="הפנטהאוז" href="/#about" />
           <NavLink text="גלריה" href="/gallery" />
-          <NavLink text="יצירת קשר" />
+          <NavLink text="יצירת קשר" href="/#contact" />
         </div>
 
         {/* Logo - Centered on mobile, right side on desktop */}
@@ -103,13 +103,13 @@ export const Navbar = () => {
             <NavLink text="דף הבית" href="/" onClick={handleNavClick} isMobile />
           </div>
           <div className="h-11">
-            <NavLink text="הפנטהאוז" onClick={handleNavClick} isMobile />
+            <NavLink text="הפנטהאוז" href="/#about" onClick={handleNavClick} isMobile />
           </div>
           <div className="h-11">
             <NavLink text="גלריה" href="/gallery" onClick={handleNavClick} isMobile />
           </div>
           <div className="h-11">
-            <NavLink text="יצירת קשר" onClick={handleNavClick} isMobile />
+            <NavLink text="יצירת קשר" href="/#contact" onClick={handleNavClick} isMobile />
           </div>
         </div>
       </div>

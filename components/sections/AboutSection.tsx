@@ -22,65 +22,63 @@ export const AboutSection = () => {
 
     if (!heading1 || !heading2 || !gallery || !section) return;
 
-    // Set initial state
-    gsap.set([heading1, heading2, gallery], { opacity: 1 });
+    // Create a context for proper cleanup
+    const ctx = gsap.context(() => {
+      // Heading 1 animation - fade in and slide up
+      gsap.fromTo(heading1,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
 
-    // Heading 1 animation - fade in and slide up
-    gsap.fromTo(heading1,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reset',
-        },
-      }
-    );
+      // Heading 2 animation - fade in and slide up with delay
+      gsap.fromTo(heading2,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
 
-    // Heading 2 animation - fade in and slide up with delay
-    gsap.fromTo(heading2,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        delay: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reset',
-        },
-      }
-    );
+      // Gallery animation - fade in and scale
+      gsap.fromTo(gallery,
+        { opacity: 0, scale: 0.95 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          delay: 0.4,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'top 20%',
+            toggleActions: 'play none none reset',
+          },
+        }
+      );
+    }, section);
 
-    // Gallery animation - fade in and scale
-    gsap.fromTo(gallery,
-      { opacity: 0, scale: 0.95 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        delay: 0.4,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          end: 'top 20%',
-          toggleActions: 'play none none reset',
-        },
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
