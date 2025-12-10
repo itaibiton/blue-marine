@@ -163,7 +163,7 @@ export const ContactFAQSection = () => {
             className="flex items-center gap-3 text-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-colors"
           >
             <Phone className="w-5 h-5" />
-            <span className="text-lg md:text-xl font-medium" dir="ltr">055-222-3604</span>
+            <span className="text-lg md:text-xl font-medium" dir="ltr">050-358-6949</span>
           </a>
 
           {/* Divider */}
